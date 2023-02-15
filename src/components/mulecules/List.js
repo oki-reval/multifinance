@@ -8,7 +8,7 @@ const List = props => {
       data={props.data}
       keyExtractor={(_, index) => index.toString()}
       renderItem={({item}) => {
-        return <Item data={item} />;
+        return <Item data={item} onPress={val => props.onPress(val)} />;
       }}
     />
   );

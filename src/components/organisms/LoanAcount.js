@@ -1,13 +1,18 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {List} from '../mulecules';
+import {List, ModalDetailAccount} from '../mulecules';
 import {color} from '../../styles';
 
 const LoanAcount = props => {
   return (
     <View style={styles.listContainer}>
       <Text style={styles.title}>Loan Account List</Text>
-      <List data={props.data} />
+      <List data={props.data} onPress={val => props.onPress(val)} />
+      <ModalDetailAccount
+        visible={props.visible}
+        onClose={() => props.onClose()}
+        detailData={props.detailData}
+      />
     </View>
   );
 };

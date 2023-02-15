@@ -12,4 +12,5 @@ export const setUser = data => ({
 
 export const setLoan = data => ({
   type: SET_LOAN,
+  payload: data,
 });

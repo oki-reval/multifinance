@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {style} from '../../styles';
 import {setAuthloading, setUser} from '../../states/actions/initApps';
 import {Button} from '../../components/atoms';
@@ -8,11 +8,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile = props => {
   const data = useSelector(state => state.initApps.user);
+  const dispatch = useDispatch();
 
   const onLogout = () => {
-    AsyncStorage.getAllKeys()
-      .then(keys => AsyncStorage.multiRemove(keys))
-      .then(() => alert('success'));
+    AsyncStorage.getAllKeys().then(keys => AsyncStorage.multiRemove(keys));
     dispatch(setAuthloading(true));
     dispatch(setUser(null));
   };

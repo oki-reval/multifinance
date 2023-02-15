@@ -1,3 +1,5 @@
 import Form from './Form';
 import List from './List';
-export {Form, List};
+import ModalDetailAccount from './ModalDetailAccount';
+
+export {Form, List, ModalDetailAccount};
