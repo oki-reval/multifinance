@@ -1,16 +1,22 @@
-import {SET_AUTHLOADING, SET_TOKEN} from '../actions/types';
+import {SET_AUTHLOADING, SET_USER, SET_LOAN} from '../actions/types';
 
 const initialState = {
-  isAuthLoading: false,
-  token: null,
+  isAuthLoading: true,
+  user: null,
+  loadingLoan: true,
 };
 
 export default initApps = (state = initialState, action) => {
   switch (action.type) {
     case SET_AUTHLOADING:
-      return {...state, isAuthLoading: payload};
-    case SET_TOKEN:
-      return {...state, token: payload};
+      return {...state, isAuthLoading: action.payload};
+    case SET_USER:
+      return {...state, user: action.payload};
+    case SET_LOAN:
+      return {
+        ...state,
+        loadingLoan: false,
+      };
     default:
       return state;
   }

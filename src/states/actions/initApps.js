@@ -1,11 +1,15 @@
-import {SET_AUTHLOADING, SET_TOKEN} from './types';
+import {SET_AUTHLOADING, SET_USER, SET_LOAN} from './types';
 
 export const setAuthloading = data => ({
   type: SET_AUTHLOADING,
   payload: data,
 });
 
-export const setToken = data => ({
-  type: SET_TOKEN,
+export const setUser = data => ({
+  type: SET_USER,
   payload: data,
+});
+
+export const setLoan = data => ({
+  type: SET_LOAN,
 });

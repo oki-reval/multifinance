@@ -8,11 +8,11 @@ const Stack = createNativeStackNavigator();
 const AuthNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="authLoading"
         component={AuthLoading}
         options={{headerShown: false}}
-      />
+      /> */}
       <Stack.Screen
         name="loginRegister"
         component={LogReg}

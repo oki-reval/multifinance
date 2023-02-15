@@ -19,6 +19,7 @@ const PrivateNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName={'home'}
+      options={{headerShown: false}}
       tabBar={props => <TabBar {...props} />}
       //   screenOptions={({route}) => ({
       //     tabBarIcon: ({focused, color, size}) => {

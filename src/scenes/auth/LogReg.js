@@ -1,13 +1,16 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, StatusBar, View, BackHandler, Text} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {Login, Register} from '../../components/organisms';
+import {setAuthloading, setUser} from '../../states/actions/initApps';
 import {color, style} from '../../styles';
 import {odoo_builder} from '../../utils/environment';
 
 const LogReg = () => {
+  const dispatch = useDispatch();
   const [activePage, setActivePage] = useState('login');
   const [loading, setLoading] = useState(false);
-
   function handleBackButtonClick() {
     if (activePage == 'login') {
       setActivePage('register');
@@ -32,8 +35,14 @@ const LogReg = () => {
     setLoading(true);
     await odoo_builder('http://47.241.10.35:88', 'demo')
       .login(data.email, data.password)
-      .then(res => console.log(res, 'login'))
-      .catch(err => console.log({err}));
+      .then(res => {
+        dispatch(setUser(res));
+        dispatch(setAuthloading(true));
+      })
+      .catch(err => {
+        alert('Server Error, Please Try Agains');
+        console.log({err});
+      });
     setLoading(false);
   };
 
