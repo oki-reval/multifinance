@@ -7,8 +7,10 @@ const {height, width} = Dimensions.get('screen');
 
 const AuthLoading = props => {
   useEffect(() => {
-    props.navigation.navigate('loginRegister');
-  }, [10000]);
+    setTimeout(() => {
+      props.navigation.navigate('loginRegister');
+    }, 1000);
+  }, []);
 
   return (
     <View style={styles.container}>

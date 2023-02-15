@@ -1,21 +1,17 @@
-import {ADD_TODO} from './action';
+import {SET_AUTHLOADING, SET_TOKEN} from '../actions/types';
 
 const initialState = {
-  todos: [],
+  isAuthLoading: false,
+  token: null,
 };
 
-const todoReducer = (state = initialState, action) => {
+export default initApps = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TODO: {
-      const {id, task} = action.payload;
-      return {
-        ...state,
-        todos: [...state.todos, {id, task}],
-      };
-    }
+    case SET_AUTHLOADING:
+      return {...state, isAuthLoading: payload};
+    case SET_TOKEN:
+      return {...state, token: payload};
     default:
       return state;
   }
 };
-
-export default todoReducer;

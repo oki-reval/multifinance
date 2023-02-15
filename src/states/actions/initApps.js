@@ -1,11 +1,11 @@
-export const ADD_TODO = 'ADD_TODO';
+import {SET_AUTHLOADING, SET_TOKEN} from './types';
 
-let todoId = 0;
+export const setAuthloading = data => ({
+  type: SET_AUTHLOADING,
+  payload: data,
+});
 
-export const addTodo = task => ({
-  type: ADD_TODO,
-  payload: {
-    id: ++todoId,
-    task,
-  },
+export const setToken = data => ({
+  type: SET_TOKEN,
+  payload: data,
 });

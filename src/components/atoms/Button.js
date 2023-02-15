@@ -100,7 +100,7 @@ const ButtonText = props => {
 };
 
 const ButtonIndicator = props => {
-  const {border, textColor, stripColor} = props;
+  const {border, textColor, stripColor, loading} = props;
 
   return (
     <TouchableHighlight
@@ -115,10 +115,19 @@ const ButtonIndicator = props => {
         style={[styles.btnIndicator, props.style, {borderWidth: border}]}>
         {props.icon && <Icon name={props.icon} size={18} color={color.g700} />}
         <View>
-          <Text
-            style={[styles.btnTextIndicator, {color: textColor ?? color.g200}]}>
-            {props.title}
-          </Text>
+          {loading ? (
+            <View style={{height: 25}}>
+              <BallIndicator size={28} color="#fff" />
+            </View>
+          ) : (
+            <Text
+              style={[
+                styles.btnTextIndicator,
+                {color: textColor ?? color.g200},
+              ]}>
+              {props.title}
+            </Text>
+          )}
           {props.strip && (
             <Animated.View
               useNativeDriver

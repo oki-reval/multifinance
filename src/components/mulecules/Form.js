@@ -3,6 +3,11 @@ import React from 'react';
 import {Input} from '../atoms';
 
 const Form = props => {
+  const handleChange = (key, val) => {
+    const data = {key, val};
+    props.setChange(data);
+  };
+
   const renderItem = ({item}) => {
     return (
       <Input
@@ -10,6 +15,7 @@ const Form = props => {
         keyboardType={item.keyboardType}
         type={item.type}
         placeholder={item.placeholder}
+        onChangeText={val => handleChange(item.type, val)}
       />
     );
   };

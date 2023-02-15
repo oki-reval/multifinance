@@ -1,3 +1,4 @@
+import {combineReducers} from 'redux';
 import initApps from './initApps';
 
-export {initApps};
+export default combineReducers({initApps});

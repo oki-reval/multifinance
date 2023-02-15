@@ -1,7 +1,7 @@
 import {Text, Dimensions, View} from 'react-native';
 import React from 'react';
 import {Form} from '../mulecules';
-import {style} from '../../styles';
+import {color, style} from '../../styles';
 import {Auth} from '../../assets/svg';
 import {ButtonIndicator, ButtonText} from '../atoms';
 
@@ -43,7 +43,11 @@ const Register = props => {
       <ButtonIndicator title={'Register'} onPress={props.onPress} />
       <View style={style.flexRow}>
         <Text>Sudah Belum Memiliki akun ? silakan </Text>
-        <ButtonText title={'Login'} onPress={props.onPressText} />
+        <ButtonText
+          title={'Login'}
+          onPress={props.onPressText}
+          color={color.primary}
+        />
       </View>
     </View>
   );

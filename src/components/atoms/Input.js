@@ -7,7 +7,7 @@ const Input = props => {
   return (
     <SafeAreaView style={styles.container}>
       <TextInput
-        onChangeText={text => props.onChangeText(text)}
+        onChangeText={val => props.onChangeText(val)}
         value={props.value}
         style={styles.emailInput}
         placeholder={props.placeholder}
