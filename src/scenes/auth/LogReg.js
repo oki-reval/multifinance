@@ -31,7 +31,6 @@ const LogReg = () => {
   }, []);
 
   const onLogin = async data => {
-    console.log(data);
     setLoading(true);
     await odoo_builder('http://47.241.10.35:88', 'demo')
       .login(data.email, data.password)
@@ -41,7 +40,6 @@ const LogReg = () => {
       })
       .catch(err => {
         alert('Server Error, Please Try Agains');
-        console.log({err});
       });
     setLoading(false);
   };
