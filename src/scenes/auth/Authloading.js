@@ -11,17 +11,21 @@ const {height, width} = Dimensions.get('screen');
 const AuthLoading = props => {
   const user = AsyncStorage.getItem('user');
   const dispatch = useDispatch();
-
+  console.log(user, 'from authloading');
   useEffect(() => {
     generateConfiguration();
   });
 
   const generateConfiguration = () => {
     if (user) {
-      dispatch(setUser(user));
-      dispatch(setAuthloading(false));
+      setTimeout(() => {
+        dispatch(setUser(user));
+        dispatch(setAuthloading(false));
+      }, 500);
     } else {
-      dispatch(setAuthloading(false));
+      setTimeout(() => {
+        dispatch(setAuthloading(false));
+      }, 500);
     }
   };
 

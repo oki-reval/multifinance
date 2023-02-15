@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Pressable, Dimensions, StyleSheet} from 'react-native';
-// import NavigationIcon from './navigationIcon';
+import {View, Pressable, Dimensions, StyleSheet, Text} from 'react-native';
+import NavigationIcon from '../mulecules/NavigationIcon';
 
 const {width} = Dimensions.get('window');
 
@@ -42,14 +42,9 @@ const TabBar = ({state, descriptors, navigation}) => {
                 backgroundColor: isFocused ? '#030D16' : '#182028',
                 borderRadius: 20,
               }}>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flex: 1,
-                  padding: 15,
-                }}>
-                {/* <NavigationIcon route={label} isFocused={isFocused} /> */}
+              <View style={styles.icon}>
+                <NavigationIcon route={label} isFocused={isFocused} />
+                <Text style={styles.label}>{label}</Text>
               </View>
             </Pressable>
           </View>
@@ -63,10 +58,10 @@ const styles = StyleSheet.create({
   mainContainer: {
     flexDirection: 'row',
     position: 'absolute',
-    bottom: 25,
+    bottom: 15,
     backgroundColor: '#182028',
     borderRadius: 25,
-    marginHorizontal: width * 0.1,
+    marginHorizontal: width * 0.04,
   },
   mainItemContainer: {
     flex: 1,
@@ -75,6 +70,18 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 1,
     borderColor: '#333B42',
+  },
+  label: {
+    textAlign: 'center',
+    color: '#fff',
+    fontWeight: '600',
+  },
+  icon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
   },
 });
 
