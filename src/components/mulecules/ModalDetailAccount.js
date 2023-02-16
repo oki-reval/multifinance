@@ -10,6 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import {color, style} from '../../styles';
 import {autoCurency} from '../../utils/helper';
+import {Button} from '../atoms';
 
 const ModalDetailAccount = props => {
   const data = props?.detailData;
@@ -53,6 +54,9 @@ const ModalDetailAccount = props => {
         </View>
         <View style={styles.transparent}></View>
       </Modal>
+      <View style={{height: 100}}>
+        <Button title={'Bayar'} onPress={props.onPress} />
+      </View>
     </View>
   );
 };

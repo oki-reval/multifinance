@@ -12,6 +12,7 @@ const LoanAcount = props => {
         visible={props.visible}
         onClose={() => props.onClose()}
         detailData={props.detailData}
+        onPress={props.onPay}
       />
     </View>
   );

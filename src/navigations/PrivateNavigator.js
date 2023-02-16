@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {TabBar} from '../components/organisms';
 import Dashboard from '../scenes/home/Dashboard';
 import Profile from '../scenes/profile/Profile';
+import HomeNav from './PrivateNav/HomeNav';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,11 +19,11 @@ const PrivateNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName={'Home'}
-      options={{headerShown: false}}
+      screenOptions={{headerShown: false}}
       tabBar={props => <TabBar {...props} />}>
       <Tab.Screen
         name={'Home'}
-        component={Dashboard}
+        component={HomeNav}
         options={({route}) => {
           return visibelTab(route);
         }}

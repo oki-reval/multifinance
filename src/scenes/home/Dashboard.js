@@ -9,6 +9,7 @@ import {
 import {LoanAcount} from '../../components/organisms';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLoan} from '../../states/actions/initApps';
+import Geolocation from '@react-native-community/geolocation';
 
 const Dashboard = props => {
   const dispatch = useDispatch();
@@ -43,7 +44,18 @@ const Dashboard = props => {
       .catch(err => {
         alert('Please Try Agains');
       });
-    // setDetailData(val);
+  };
+
+  const generateLocation = () => {
+    Geolocation.getCurrentPosition(
+      res => {
+        console.log(res);
+        props.navigation.navigate('payments', {location: res});
+      },
+      err => {
+        console.log(err);
+      },
+    );
   };
 
   return (
@@ -55,6 +67,7 @@ const Dashboard = props => {
         onPress={val => getDetails(val)}
         visible={visible}
         onClose={() => setvisible(false)}
+        onPay={generateLocation}
       />
     </SafeAreaView>
   );
