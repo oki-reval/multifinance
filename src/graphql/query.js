@@ -35,7 +35,6 @@ const variableDetail = name => {
     domain: [['name', '=', name]],
     user_info: 'True',
     partner_id: 'True',
-    name: name,
     limit: 1000,
   };
 };

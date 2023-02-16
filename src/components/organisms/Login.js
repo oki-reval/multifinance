@@ -1,10 +1,10 @@
-import {Text, Dimensions, View} from 'react-native';
+import {Dimensions, View, Text} from 'react-native';
 import React, {useState} from 'react';
 import {Form} from '../mulecules';
-import {color, style} from '../../styles';
+import {style} from '../../styles';
 import {Auth} from '../../assets/svg';
-import {ButtonIndicator, ButtonText} from '../atoms';
-import {useDispatch} from 'react-redux';
+import {ButtonIndicator} from '../atoms';
+import Geolocation from '@react-native-community/geolocation';
 
 const {height, width} = Dimensions.get('screen');
 
@@ -35,6 +35,25 @@ const Login = props => {
     });
   };
 
+  const openCamera = () => {
+    alert('camera');
+  };
+
+  const openGalery = () => {
+    alert('galery');
+  };
+
+  const getLocation = () => {
+    Geolocation.getCurrentPosition(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      },
+    );
+  };
+
   return (
     <View style={style.formContainer}>
       <View style={style.centerContent}>
@@ -46,6 +65,29 @@ const Login = props => {
         title={'Login'}
         onPress={() => props.onLogin(data)}
       />
+
+      <ButtonIndicator
+        loading={props.loading}
+        title={'Open Camera'}
+        onPress={() => openCamera(data)}
+      />
+
+      <ButtonIndicator
+        loading={props.loading}
+        title={'Open Galery'}
+        onPress={() => openGalery(data)}
+      />
+
+      <ButtonIndicator
+        loading={props.loading}
+        title={'Get Location'}
+        onPress={getLocation}
+      />
+
+      <View>
+        <Text>Render Test Result</Text>
+      </View>
+
       {/* <View style={style.flexRow}>
         <Text>Belum Memiliki akun ? silakan </Text>
         <ButtonText

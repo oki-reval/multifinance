@@ -12,7 +12,7 @@ import {color, style} from '../../styles';
 import {autoCurency} from '../../utils/helper';
 
 const ModalDetailAccount = props => {
-  const data = props.detailData;
+  const data = props?.detailData;
 
   const renderItem = ({item}) => (
     <View
@@ -42,10 +42,10 @@ const ModalDetailAccount = props => {
               onPress={() => props.onClose()}
             />
             <Text style={styles.modalText}>
-              {data?.LoanAccount[0]?.display_name}
+              {data?.LoanAccount ? data?.LoanAccount[0]?.display_name : ''}
             </Text>
             <FlatList
-              data={data?.LoanAccount[0]?.line_ids}
+              data={data?.LoanAccount ? data?.LoanAccount[0]?.line_ids : []}
               keyExtractor={(_, index) => index.toString()}
               renderItem={renderItem}
             />
