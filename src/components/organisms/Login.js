@@ -4,7 +4,9 @@ import {Form} from '../mulecules';
 import {style} from '../../styles';
 import {Auth} from '../../assets/svg';
 import {ButtonIndicator} from '../atoms';
+
 import Geolocation from '@react-native-community/geolocation';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const {height, width} = Dimensions.get('screen');
 
@@ -36,11 +38,59 @@ const Login = props => {
   };
 
   const openCamera = () => {
-    alert('camera');
+    let options = {
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    launchCamera(options, res => {
+      console.log('Response = ', res);
+      if (res.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (res.error) {
+        console.log('ImagePicker Error: ', res.error);
+      } else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton);
+        alert(res.customButton);
+      } else {
+        const source = {uri: res.uri};
+        console.log('response', JSON.stringify(res));
+        //  this.setState({
+        //    filePath: res,
+        //    fileData: res.data,
+        //    fileUri: res.uri,
+        //  });
+      }
+    });
   };
 
   const openGalery = () => {
-    alert('galery');
+    let options = {
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    launchImageLibrary(options, res => {
+      console.log('Response = ', res);
+      if (res.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (res.error) {
+        console.log('ImagePicker Error: ', res.error);
+      } else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton);
+        alert(res.customButton);
+      } else {
+        const source = {uri: res.uri};
+        console.log('response', JSON.stringify(res));
+        //  this.setState({
+        //    filePath: res,
+        //    fileData: res.data,
+        //    fileUri: res.uri,
+        //  });
+      }
+    });
   };
 
   const getLocation = () => {
