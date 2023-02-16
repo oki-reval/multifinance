@@ -17,6 +17,7 @@ const Dashboard = props => {
   const [data, setData] = useState([]);
   const [visible, setvisible] = useState(false);
   const [detailData, setDetailData] = useState({});
+  const [loadings, setLoading] = useState(false);
 
   useEffect(() => {
     generateData();
@@ -46,8 +47,9 @@ const Dashboard = props => {
       });
   };
 
-  const generateLocation = () => {
-    Geolocation.getCurrentPosition(
+  const generateLocation = async () => {
+    setLoading(true);
+    await Geolocation.getCurrentPosition(
       res => {
         console.log(res);
         props.navigation.navigate('payments', {location: res});
@@ -56,6 +58,7 @@ const Dashboard = props => {
         console.log(err);
       },
     );
+    setLoading(false);
   };
 
   return (
@@ -64,6 +67,7 @@ const Dashboard = props => {
         data={data}
         detailData={detailData}
         loading={loading}
+        loadingPage={loadings}
         onPress={val => getDetails(val)}
         visible={visible}
         onClose={() => setvisible(false)}

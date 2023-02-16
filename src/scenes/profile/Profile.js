@@ -20,20 +20,20 @@ const Profile = props => {
     <View style={style.container}>
       <View style={[style.flexRow, styles.childContainer]}>
         <Text style={styles.title}>Name : </Text>
-        <Text style={styles.subtitle}>{data.name}</Text>
+        <Text style={styles.subtitle}>{data?.name}</Text>
       </View>
       <View style={[style.flexRow, styles.childContainer]}>
         <Text style={styles.title}>Email : </Text>
-        <Text style={styles.subtitle}>{data.username}</Text>
+        <Text style={styles.subtitle}>{data?.username}</Text>
       </View>
       <View style={[style.flexRow, styles.childContainer]}>
         <Text style={styles.title}>Username : </Text>
-        <Text style={styles.subtitle}>{data.username}</Text>
+        <Text style={styles.subtitle}>{data?.username}</Text>
       </View>
       <View style={[style.flexRow, styles.childContainer]}>
         <Text style={styles.title}>Company : </Text>
         <Text style={styles.subtitle}>
-          {data.user_companies.current_company[1]}
+          {data?.user_companies.current_company[1]}
         </Text>
       </View>
       <Button title={'Logout'} onPress={onLogout} />

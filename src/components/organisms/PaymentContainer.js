@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {FormPayment, ModalConfirmation} from '../mulecules';
 import {Button} from '../atoms';
@@ -52,16 +52,25 @@ const PaymentContainer = props => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <FormPayment
         location={props.location}
         openCamera={openCamera}
         openGalery={openGalery}
         image={image}
+        onDelete={() => {
+          setImage(null);
+        }}
       />
-      <ModalConfirmation visible={false} />
-      <Button title={'Konfirmasi Pembayaran'} />
-    </View>
+      <ModalConfirmation
+        visible={props.showMessage}
+        onClose={() => props.onClose()}
+      />
+      <Button
+        title={'Konfirmasi Pembayaran'}
+        onPress={props.paymentConfirmation}
+      />
+    </ScrollView>
   );
 };
 

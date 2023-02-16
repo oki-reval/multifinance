@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {List, ModalDetailAccount} from '../mulecules';
 import {color} from '../../styles';
+import {Loading} from '../atoms';
 
 const LoanAcount = props => {
   return (
@@ -14,6 +15,7 @@ const LoanAcount = props => {
         detailData={props.detailData}
         onPress={props.onPay}
       />
+      <Loading loading={props.loadingPage} />
     </View>
   );
 };
