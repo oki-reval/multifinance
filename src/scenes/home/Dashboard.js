@@ -48,17 +48,15 @@ const Dashboard = props => {
   };
 
   const generateLocation = async () => {
-    setLoading(true);
     await Geolocation.getCurrentPosition(
-      res => {
-        console.log(res);
-        props.navigation.navigate('payments', {location: res});
+      async res => {
+        await setvisible(false);
+        await props.navigation.navigate('payments', {location: res});
       },
       err => {
         console.log(err);
       },
     );
-    setLoading(false);
   };
 
   return (

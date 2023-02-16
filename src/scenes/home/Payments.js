@@ -1,17 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {PaymentContainer} from '../../components/organisms';
 import Geocoder from 'react-native-geocoding';
+import {useFocusEffect} from '@react-navigation/native';
+import {setTabBar} from '../../states/actions/initApps';
+import {useDispatch} from 'react-redux';
 
 const Payments = props => {
+  const dispatch = useDispatch();
   const [showMessage, setShowMessage] = useState(false);
   const coordinate = props.route.params?.location?.coords;
   const [address, setAddress] = useState([]);
+
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(setTabBar(true));
+      return () => {
+        dispatch(setTabBar(false));
+      };
+    }, []),
+  );
 
   useEffect(() => {
     Geocoder.init('AIzaSyBoPaefkLBT9tyVqyaH0kgkU2YxthQBZ_4');
     Geocoder.from(coordinate.latitude, coordinate.longitude)
       .then(json => {
-        console.log(json.results[0], 'results');
         var addressComponent = json.results[0].address_components;
         let add = [];
         addressComponent.map(val => {

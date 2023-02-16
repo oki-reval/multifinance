@@ -2,7 +2,6 @@ import React from 'react';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {TabBar} from '../components/organisms';
-import Dashboard from '../scenes/home/Dashboard';
 import Profile from '../scenes/profile/Profile';
 import HomeNav from './PrivateNav/HomeNav';
 

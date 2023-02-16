@@ -29,6 +29,9 @@ const ModalDetailAccount = props => {
         <Text>Jumlah Pembayaran</Text>
         <Text>{autoCurency(item.amount)}</Text>
       </View>
+      <View style={{width: '80%'}}>
+        <Button title={'Bayar'} onPress={props.onPress} />
+      </View>
     </View>
   );
 
@@ -54,9 +57,6 @@ const ModalDetailAccount = props => {
         </View>
         <View style={styles.transparent}></View>
       </Modal>
-      <View style={{height: 100}}>
-        <Button title={'Bayar'} onPress={props.onPress} />
-      </View>
     </View>
   );
 };

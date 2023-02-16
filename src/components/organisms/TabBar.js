@@ -1,56 +1,64 @@
 import React from 'react';
 import {View, Pressable, Dimensions, StyleSheet, Text} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {useSelector} from 'react-redux';
 import NavigationIcon from '../mulecules/NavigationIcon';
 
 const {width} = Dimensions.get('window');
 
 const TabBar = ({state, descriptors, navigation}) => {
+  const hideTabs = useSelector(state => state.initApps.hideTabs);
+
   return (
-    <View style={styles.mainContainer}>
-      {state.routes.map((route, index) => {
-        const {options} = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
+    <SafeAreaView>
+      {hideTabs ? null : (
+        <View style={styles.mainContainer}>
+          {state.routes.map((route, index) => {
+            const {options} = descriptors[route.key];
+            const label =
+              options.tabBarLabel !== undefined
+                ? options.tabBarLabel
+                : options.title !== undefined
+                ? options.title
+                : route.name;
 
-        const isFocused = state.index === index;
+            const isFocused = state.index === index;
 
-        const onPress = () => {
-          const event = navigation.emit({
-            type: 'tabPress',
-            target: route.key,
-          });
+            const onPress = () => {
+              const event = navigation.emit({
+                type: 'tabPress',
+                target: route.key,
+              });
 
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name);
-          }
-        };
+              if (!isFocused && !event.defaultPrevented) {
+                navigation.navigate(route.name);
+              }
+            };
 
-        return (
-          <View
-            key={index}
-            style={[
-              styles.mainItemContainer,
-              {borderRightWidth: label == 'notes' ? 3 : 0},
-            ]}>
-            <Pressable
-              onPress={onPress}
-              style={{
-                backgroundColor: isFocused ? '#030D16' : '#182028',
-                borderRadius: 20,
-              }}>
-              <View style={styles.icon}>
-                <NavigationIcon route={label} isFocused={isFocused} />
-                <Text style={styles.label}>{label}</Text>
+            return (
+              <View
+                key={index}
+                style={[
+                  styles.mainItemContainer,
+                  {borderRightWidth: label == 'notes' ? 3 : 0},
+                ]}>
+                <Pressable
+                  onPress={onPress}
+                  style={{
+                    backgroundColor: isFocused ? '#030D16' : '#182028',
+                    borderRadius: 20,
+                  }}>
+                  <View style={styles.icon}>
+                    <NavigationIcon route={label} isFocused={isFocused} />
+                    <Text style={styles.label}>{label}</Text>
+                  </View>
+                </Pressable>
               </View>
-            </Pressable>
-          </View>
-        );
-      })}
-    </View>
+            );
+          })}
+        </View>
+      )}
+    </SafeAreaView>
   );
 };
 

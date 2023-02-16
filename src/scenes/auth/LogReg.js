@@ -1,7 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, StatusBar, View, BackHandler, Text} from 'react-native';
+import {StatusBar, View, BackHandler} from 'react-native';
 import {useDispatch} from 'react-redux';
+import {Loading} from '../../components/atoms';
 import {Login, Register} from '../../components/organisms';
 import {setAuthloading, setUser} from '../../states/actions/initApps';
 import {color, style} from '../../styles';
@@ -59,10 +59,9 @@ const LogReg = () => {
           onPressText={() => setActivePage('login')}
         />
       )}
+      {loading && <Loading loading={loading} />}
     </View>
   );
 };
 
 export default LogReg;
-
-const styles = StyleSheet.create({});

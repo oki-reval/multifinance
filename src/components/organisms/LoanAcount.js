@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: color.g800,
     fontSize: 24,
-    marginVertical: 5,
+    marginVertical: 20,
   },
 });
 export default LoanAcount;

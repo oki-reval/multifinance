@@ -29,12 +29,7 @@ const App = props => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name={'PrivateNavigator'}
-          component={PrivateNavigator}
-          options={{headerShown: false}}
-        />
-        {/* {user ? (
+        {user ? (
           <Stack.Screen
             name={'PrivateNavigator'}
             component={PrivateNavigator}
@@ -46,7 +41,7 @@ const App = props => {
             component={AuthNavigator}
             options={{headerShown: false}}
           />
-        )} */}
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
