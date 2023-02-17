@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import {style} from '../../styles';
+import {color, style} from '../../styles';
 import {autoCurency} from '../../utils/helper';
 
 const Item = props => {
@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: color.primary,
   },
   textLoan: {
     marginHorizontal: 10,

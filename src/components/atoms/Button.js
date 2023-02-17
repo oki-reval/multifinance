@@ -7,8 +7,8 @@ import {
   Animated,
 } from 'react-native';
 import {BallIndicator} from 'react-native-indicators';
-import Icon from 'react-native-vector-icons';
-import {color} from '../../styles';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {color, style} from '../../styles';
 import LinearGradient from 'react-native-linear-gradient';
 
 const Button = props => {
@@ -108,12 +108,11 @@ const ButtonIndicator = props => {
       onPress={props.onPress}
       disabled={props.disabled}>
       <LinearGradient
-        start={{x: 0.4, y: 0.25}}
+        start={{x: 0.6, y: 0.25}}
         end={{x: 0.5, y: 2}}
         locations={[0, 0.8, 0.6]}
-        colors={['#4c669f', color.primary, '#192f6a']}
+        colors={[color.pt30, color.primary, color.p200]}
         style={[styles.btnIndicator, props.style, {borderWidth: border}]}>
-        {props.icon && <Icon name={props.icon} size={18} color={color.g700} />}
         <View>
           {loading ? (
             <View style={{height: 25}}>
@@ -128,16 +127,6 @@ const ButtonIndicator = props => {
               {props.title}
             </Text>
           )}
-          {props.strip && (
-            <Animated.View
-              useNativeDriver
-              style={{
-                borderBottomWidth: 3,
-                borderBottomColor: stripColor,
-                width: 25,
-              }}
-            />
-          )}
         </View>
       </LinearGradient>
     </TouchableHighlight>
@@ -149,6 +138,7 @@ const styles = StyleSheet.create({
     color: color.g800,
   },
   btnIndicator: {
+    ...style.shadow,
     padding: 10,
     borderRadius: 10,
     borderColor: color.g300,

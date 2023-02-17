@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {color, style} from '../../styles';
 import {autoCurency} from '../../utils/helper';
 import {Button} from '../atoms';
-
+const {height, width} = Dimensions.get('screen');
 const ModalDetailAccount = props => {
   const data = props?.detailData;
 
@@ -19,7 +19,15 @@ const ModalDetailAccount = props => {
     <View
       style={[
         style.shadow,
-        {marginVertical: 5, width: Dimensions.get('screen').width - 10},
+        {
+          padding: 5,
+          marginVertical: 10,
+          marginHorizontal: 5,
+          alignItems: 'center',
+          borderRadius: 6,
+          borderWidth: 0.7,
+          borderColor: color.secondary,
+        },
       ]}>
       <View style={[style.flexRow, styles.textItem]}>
         <Text>Tanggal Pembayaran</Text>
@@ -29,7 +37,7 @@ const ModalDetailAccount = props => {
         <Text>Jumlah Pembayaran</Text>
         <Text>{autoCurency(item.amount)}</Text>
       </View>
-      <View style={{width: '80%'}}>
+      <View style={{width: '60%', paddingVertical: 5}}>
         <Button title={'Bayar'} onPress={props.onPress} />
       </View>
     </View>
@@ -44,6 +52,7 @@ const ModalDetailAccount = props => {
               name={'close-circle-outline'}
               size={34}
               onPress={() => props.onClose()}
+              style={{alignSelf: 'flex-end'}}
             />
             <Text style={styles.modalText}>
               {data?.LoanAccount ? data?.LoanAccount[0]?.display_name : ''}
@@ -64,14 +73,17 @@ const ModalDetailAccount = props => {
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-end',
+    // alignItems: 'center',
   },
   modalView: {
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
+    backgroundColor: color.g700,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    padding: 15,
     ...style.shadow,
+    width: width,
+    height: height - 120,
   },
   button: {
     borderRadius: 20,
@@ -81,10 +93,12 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+    fontWeight: '600',
+    fontSize: 24,
   },
   transparent: {
     position: 'absolute',
-    backgroundColor: color.g800,
+    backgroundColor: color.tabBg,
     opacity: 0.7,
     height: '100%',
     width: '100%',
@@ -92,8 +106,8 @@ const styles = StyleSheet.create({
   },
   textItem: {
     justifyContent: 'space-between',
-    width: '80%',
-    marginVertical: -8,
+    width: '100%',
+    marginVertical: -5,
   },
 });
 

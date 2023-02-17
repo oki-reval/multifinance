@@ -45,7 +45,7 @@ const LogReg = () => {
   };
 
   return (
-    <View style={[style.container, {backgroundColor: color.background}]}>
+    <View style={style.CenteredContainer}>
       <StatusBar style="light" backgroundColor={'transparent'} translucent />
       {activePage == 'login' ? (
         <Login

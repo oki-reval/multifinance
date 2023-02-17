@@ -1,9 +1,9 @@
-import {Dimensions, View, Text} from 'react-native';
 import React, {useState} from 'react';
+import {Dimensions, View, Text, Image} from 'react-native';
 import {Form} from '../mulecules';
 import {style} from '../../styles';
-import {Auth} from '../../assets/svg';
-import {ButtonIndicator} from '../atoms';
+import {Connection} from '../../assets/svg';
+import {ButtonIndicator, Divider} from '../atoms';
 
 const {height, width} = Dimensions.get('screen');
 
@@ -35,17 +35,23 @@ const Login = props => {
   };
 
   return (
-    <View style={style.formContainer}>
+    <View>
+      <Image
+        source={require('../../assets/images/Logo.png')}
+        style={style.logoSmall}
+        resizeMode="contain"
+      />
       <View style={style.centerContent}>
-        <Auth width={width / 1.5} height={height / 3} />
+        <Connection width={width / 1.5} height={height / 3.6} />
+        <Text style={[style.h1]}>Selamat Datang, Silakan Login</Text>
       </View>
       <Form data={input} setChange={val => handleChange(val)} />
+      <Divider height={30} width={10} />
       <ButtonIndicator
         loading={props.loading}
         title={'Login'}
         onPress={() => props.onLogin(data)}
       />
-
       {/* <View style={style.flexRow}>
         <Text>Belum Memiliki akun ? silakan </Text>
         <ButtonText

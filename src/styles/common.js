@@ -7,7 +7,7 @@ export const style = StyleSheet.create({
     padding: 10,
     justifyContent: 'center',
   },
-  container: {
+  CenteredContainer: {
     flex: 1,
     backgroundColor: color.bglight,
     padding: 10,
@@ -15,6 +15,10 @@ export const style = StyleSheet.create({
   },
   formContainer: {
     alignContent: 'center',
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 10,
   },
   shadow: {
     shadowColor: '#000',
@@ -26,27 +30,21 @@ export const style = StyleSheet.create({
   },
   centerContent: {
     alignSelf: 'center',
-  },
-  header: {
-    // height: Platform.OS == 'ios' ? isIphoneX() ? 93 : 73 : 58,
-    flexDirection: 'row',
     alignItems: 'center',
-    // paddingTop: Platform.OS == 'ios' ? isIphoneX() ? 30 : 25 : 5,
-    paddingHorizontal: 10,
-    paddingBottom: 5,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 0},
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    elevation: 3,
-    backgroundColor: '#fff',
-    marginBottom: 3,
+  },
+  logoSmall: {
+    height: 50,
+    width: 100,
   },
   body: {
     flex: 1,
     backgroundColor: '#fff',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    // padding: 16,
+  },
+  h1: {
+    fontSize: 20,
+    margin: 5,
+    fontFamily: 'Poppins-Medium',
   },
 });

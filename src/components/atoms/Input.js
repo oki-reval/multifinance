@@ -1,6 +1,6 @@
 import React from 'react';
 import {TextInput, SafeAreaView, StyleSheet, Dimensions} from 'react-native';
-import {color} from '../../styles';
+import {color, style} from '../../styles';
 import {ButtonIndicator} from './Button';
 
 const Input = props => {
@@ -20,13 +20,14 @@ const styles = StyleSheet.create({
   emailInput: {
     width: '100%',
     height: 50,
-    borderWidth: 1,
-    borderRadius: 15,
     borderColor: color.g400,
-    padding: 10,
+    padding: 5,
   },
   container: {
-    margin: 10,
+    ...style.shadow,
+    padding: 2,
+    margin: 5,
+    borderRadius: 15,
   },
 });
 export default Input;

@@ -1,6 +1,7 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {FlatList, View} from 'react-native';
 import {Input} from '../atoms';
+import {style} from '../../styles';
 
 const Form = props => {
   const handleChange = (key, val) => {
@@ -21,7 +22,7 @@ const Form = props => {
   };
 
   return (
-    <View>
+    <View styles={style.formContainer}>
       <FlatList
         data={props.data}
         keyExtractor={(_, index) => index.toString()}
@@ -32,5 +33,3 @@ const Form = props => {
 };
 
 export default Form;
-
-const styles = StyleSheet.create({});
