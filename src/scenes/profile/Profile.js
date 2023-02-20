@@ -17,7 +17,7 @@ const Profile = props => {
   };
 
   return (
-    <View style={style.container}>
+    <View style={styles.container}>
       <View style={[style.flexRow, styles.childContainer]}>
         <Text style={styles.title}>Name : </Text>
         <Text style={styles.subtitle}>{data?.name}</Text>
@@ -42,6 +42,10 @@ const Profile = props => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    marginTop: 30,
+  },
   childContainer: {
     ...style.shadow,
     justifyContent: 'space-between',

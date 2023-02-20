@@ -1,7 +1,7 @@
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {style} from '../../styles';
-import {Button, Input} from '../atoms';
+import {color, style} from '../../styles';
+import {Button, Divider, Input} from '../atoms';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const {height, width} = Dimensions.get('screen');
@@ -9,13 +9,13 @@ const {height, width} = Dimensions.get('screen');
 const FormPayment = props => {
   return (
     <View>
-      <View style={[style.flexRow, styles.childContainer]}>
+      <View style={[styles.childContainer]}>
         <Text>Lokasi Pembayaran : </Text>
         <View style={styles.address}>
           <Text>{props.location}</Text>
         </View>
       </View>
-      <View style={[style.flexRow, styles.childContainer]}>
+      <View style={[styles.childContainer]}>
         <Text>Jumlah Pembayaran : </Text>
         <View style={styles.address}>
           <Input
@@ -26,6 +26,7 @@ const FormPayment = props => {
       </View>
       <View style={styles.imageContainer}>
         <Text>Unggah Bukti Pembayaran</Text>
+        <Divider height={2} color={color.g400} />
         <View style={[style.flexRow, styles.childContainer, {width: '100%'}]}>
           <Button title={'Ambil Foto'} onPress={props.openCamera} />
           <Button title={'Pilih dari Galeri'} onPress={props.openGalery} />
@@ -58,8 +59,8 @@ const styles = StyleSheet.create({
   childContainer: {
     justifyContent: 'space-between',
     ...style.shadow,
-    borderRadius: 15,
-    alignItems: 'center',
+    borderRadius: 6,
+    padding: 10,
   },
   imageContainer: {
     padding: 20,
@@ -68,7 +69,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   address: {
-    maxWidth: width / 2,
+    maxWidth: width,
+    margin: 15,
   },
 });
 export default FormPayment;

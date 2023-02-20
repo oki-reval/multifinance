@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
+import {Image, Alert} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {odoo_builder} from '../../utils/environment';
 import {
@@ -10,6 +11,8 @@ import {LoanAcount} from '../../components/organisms';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLoan} from '../../states/actions/initApps';
 import Geolocation from '@react-native-community/geolocation';
+import {useFocusEffect} from '@react-navigation/native';
+import {style} from '../../styles';
 
 const Dashboard = props => {
   const dispatch = useDispatch();
@@ -19,9 +22,14 @@ const Dashboard = props => {
   const [detailData, setDetailData] = useState({});
   const [loadings, setLoading] = useState(false);
 
-  useEffect(() => {
-    generateData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      generateData();
+      return () => {
+        null;
+      };
+    }, []),
+  );
 
   const generateData = async () => {
     await odoo_builder('http://47.241.10.35:88', 'demo')
@@ -34,16 +42,19 @@ const Dashboard = props => {
   };
 
   const getDetails = async val => {
+    setvisible(true);
     await odoo_builder('http://47.241.10.35:88', 'demo')
       .graphql(getDetailLoanAccount, variableDetail(val.name))
       .then(res => {
         setDetailData(res);
-        setTimeout(() => {
-          setvisible(true);
-        }, 500);
       })
       .catch(err => {
-        alert('Please Try Agains');
+        Alert.alert('Opps ..... ', 'Please Try Again', [
+          {
+            text: 'OK',
+            onPress: () => setvisible(false),
+          },
+        ]);
       });
   };
 
@@ -61,6 +72,10 @@ const Dashboard = props => {
 
   return (
     <SafeAreaView>
+      <Image
+        source={require('../../assets/images/Logo.png')}
+        style={[style.logoSmall, {margin: 10}]}
+      />
       <LoanAcount
         data={data}
         detailData={detailData}
@@ -68,7 +83,10 @@ const Dashboard = props => {
         loadingPage={loadings}
         onPress={val => getDetails(val)}
         visible={visible}
-        onClose={() => setvisible(false)}
+        onClose={() => {
+          setDetailData([]);
+          setvisible(false);
+        }}
         onPay={generateLocation}
       />
     </SafeAreaView>

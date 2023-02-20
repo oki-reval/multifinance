@@ -45,6 +45,14 @@ export const style = StyleSheet.create({
   h1: {
     fontSize: 20,
     margin: 5,
-    fontFamily: 'Poppins-Medium',
+    textAlign: 'center',
+    fontFamily: 'Poppins-Bold',
+    color: color.p700,
+  },
+  h1_light: {
+    textAlign: 'center',
+    fontSize: 20,
+    margin: 10,
+    fontFamily: 'Poppins-Light',
   },
 });

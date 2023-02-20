@@ -1,16 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect} from 'react';
-import {
-  StyleSheet,
-  Dimensions,
-  View,
-  Text,
-  StatusBar,
-  Image,
-} from 'react-native';
+import {StyleSheet, Dimensions, View, StatusBar, Image} from 'react-native';
 import {BallIndicator} from 'react-native-indicators';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch} from 'react-redux';
+import {Welcome} from '../../assets/svg';
 import {setAuthloading, setUser} from '../../states/actions/initApps';
 import {style} from '../../styles';
 import {color} from '../../styles/colors';
@@ -40,20 +34,20 @@ const AuthLoading = props => {
 
   return (
     <LinearGradient
-      start={{x: 0.4, y: 0.25}}
+      start={{x: 0.1, y: 0.14}}
       end={{x: 0.1, y: 2}}
-      locations={[0.2, 0.8, 0.6]}
-      colors={[color.pt10, color.secondary, color.p600]}
+      locations={[0, 0.5, 0.1]}
+      colors={[color.s700, color.p600, color.pt60]}
       style={styles.container}>
       <StatusBar style="light" backgroundColor={'transparent'} translucent />
-      <Text style={styles.label}>WELCOME</Text>
-      <Image
-        source={require('../../assets/images/Logo.png')}
-        resizeMode="contain"
-        style={{height: height / 3, width: width / 1.5}}
-      />
-      <View style={style.footer}>
-        <BallIndicator color={'white'} />
+      <Welcome height={height / 3} />
+      <View style={[style.flexRow, style.footer]}>
+        <Image
+          source={require('../../assets/images/Logo.png')}
+          resizeMode="contain"
+          style={{height: height / 15, width: width / 2}}
+        />
+        <BallIndicator color={color.s400} size={20} />
       </View>
     </LinearGradient>
   );
@@ -65,11 +59,6 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  label: {
-    color: '#fff',
-    fontSize: 34,
-    fontFamily: 'Poppins-Light',
   },
 });
 

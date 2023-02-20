@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Pressable, Dimensions, StyleSheet, Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useSelector} from 'react-redux';
+import {color} from '../../styles';
 import NavigationIcon from '../mulecules/NavigationIcon';
 
 const {width} = Dimensions.get('window');
@@ -36,16 +37,11 @@ const TabBar = ({state, descriptors, navigation}) => {
             };
 
             return (
-              <View
-                key={index}
-                style={[
-                  styles.mainItemContainer,
-                  {borderRightWidth: label == 'notes' ? 3 : 0},
-                ]}>
+              <View key={index} style={[styles.mainItemContainer]}>
                 <Pressable
                   onPress={onPress}
                   style={{
-                    backgroundColor: isFocused ? '#030D16' : '#182028',
+                    backgroundColor: isFocused ? color.p300 : color.p700,
                     borderRadius: 20,
                   }}>
                   <View style={styles.icon}>
@@ -67,7 +63,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     position: 'absolute',
     bottom: 15,
-    backgroundColor: '#182028',
+    backgroundColor: color.p700,
     borderRadius: 25,
     marginHorizontal: width * 0.04,
   },
@@ -75,9 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 10,
-    borderRadius: 1,
-    borderColor: '#333B42',
+    marginVertical: 2,
   },
   label: {
     textAlign: 'center',
@@ -89,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     paddingHorizontal: 15,
-    paddingVertical: 5,
+    paddingVertical: 3,
   },
 });
 

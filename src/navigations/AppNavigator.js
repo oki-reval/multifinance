@@ -10,6 +10,7 @@ const Stack = createNativeStackNavigator();
 
 const App = props => {
   const loading = useSelector(state => state.initApps.isAuthLoading);
+  // const loading = true;
   const user = useSelector(state => state.initApps.user);
 
   if (loading) {

@@ -9,13 +9,9 @@ const NavigationIcon = props => {
     else if (props.route == 'Profile') return 'person-circle';
   };
 
-  const generateColor = () => {
-    if (props.isFocused) return color.primary;
-    else return color.secondary;
-  };
   return (
     <View>
-      <Icon name={generateIcon()} size={34} color={generateColor()} />
+      <Icon name={generateIcon()} size={34} color={color.s300} />
     </View>
   );
 };

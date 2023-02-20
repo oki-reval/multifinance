@@ -47,11 +47,7 @@ const Login = props => {
       </View>
       <Form data={input} setChange={val => handleChange(val)} />
       <Divider height={30} width={10} />
-      <ButtonIndicator
-        loading={props.loading}
-        title={'Login'}
-        onPress={() => props.onLogin(data)}
-      />
+      <ButtonIndicator title={'Login'} onPress={() => props.onLogin(data)} />
       {/* <View style={style.flexRow}>
         <Text>Belum Memiliki akun ? silakan </Text>
         <ButtonText
