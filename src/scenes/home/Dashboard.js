@@ -1,5 +1,5 @@
-import React, {useCallback, useState} from 'react';
-import {Image, Alert} from 'react-native';
+import React, {useCallback, useState, useEffect} from 'react';
+import {Image, Alert, BackHandler} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {odoo_builder} from '../../utils/environment';
 import {
@@ -13,6 +13,7 @@ import {setLoan} from '../../states/actions/initApps';
 import Geolocation from '@react-native-community/geolocation';
 import {useFocusEffect} from '@react-navigation/native';
 import {style} from '../../styles';
+import {Loading} from '../../components/atoms';
 
 const Dashboard = props => {
   const dispatch = useDispatch();
@@ -30,6 +31,21 @@ const Dashboard = props => {
       };
     }, []),
   );
+  console.log(visible);
+  function handleBackButtonClick() {
+    setvisible(false);
+    return true;
+  }
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener(
+        'hardwareBackPress',
+        handleBackButtonClick,
+      );
+    };
+  }, []);
 
   const generateData = async () => {
     await odoo_builder('http://47.241.10.35:88', 'demo')
@@ -43,10 +59,12 @@ const Dashboard = props => {
 
   const getDetails = async val => {
     setvisible(true);
+    setLoading(true);
     await odoo_builder('http://47.241.10.35:88', 'demo')
       .graphql(getDetailLoanAccount, variableDetail(val.name))
       .then(res => {
         setDetailData(res);
+        setLoading(false);
       })
       .catch(err => {
         Alert.alert('Opps ..... ', 'Please Try Again', [
@@ -80,7 +98,6 @@ const Dashboard = props => {
         data={data}
         detailData={detailData}
         loading={loading}
-        loadingPage={loadings}
         onPress={val => getDetails(val)}
         visible={visible}
         onClose={() => {
@@ -88,7 +105,9 @@ const Dashboard = props => {
           setvisible(false);
         }}
         onPay={generateLocation}
+        loadData={loadings}
       />
+      {loading && <Loading />}
     </SafeAreaView>
   );
 };

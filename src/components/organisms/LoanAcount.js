@@ -1,8 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import {List, ModalDetailAccount} from '../mulecules';
-import {color, style} from '../../styles';
-import {Loading} from '../atoms';
+import {style} from '../../styles';
 
 const LoanAcount = props => {
   return (
@@ -14,8 +13,8 @@ const LoanAcount = props => {
         onClose={() => props.onClose()}
         detailData={props.detailData}
         onPress={props.onPay}
+        loading={props.loadData}
       />
-      <Loading loading={props.loadingPage} />
     </View>
   );
 };

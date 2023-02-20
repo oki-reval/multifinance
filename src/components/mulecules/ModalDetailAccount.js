@@ -7,11 +7,13 @@ import {
   FlatList,
   Dimensions,
 } from 'react-native';
+import {BallIndicator} from 'react-native-indicators';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {color, style} from '../../styles';
 import {autoCurency} from '../../utils/helper';
 import {Button} from '../atoms';
 const {height, width} = Dimensions.get('screen');
+
 const ModalDetailAccount = props => {
   const data = props?.detailData;
 
@@ -45,7 +47,11 @@ const ModalDetailAccount = props => {
 
   return (
     <View style={styles.centeredView}>
-      <Modal animationType="fade" transparent={true} visible={props.visible}>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={props.visible}
+        onRequestClose={() => props.onClose()}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Icon
@@ -57,6 +63,7 @@ const ModalDetailAccount = props => {
             <Text style={styles.modalText}>
               {data?.LoanAccount ? data?.LoanAccount[0]?.display_name : ''}
             </Text>
+            {props.loading && <BallIndicator style={{margin: 20}} />}
             <FlatList
               data={data?.LoanAccount ? data?.LoanAccount[0]?.line_ids : []}
               keyExtractor={(_, index) => index.toString()}

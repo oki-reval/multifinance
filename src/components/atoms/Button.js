@@ -48,6 +48,7 @@ const Button = props => {
               style={{
                 color: outline ? color.primary : '#fff',
                 fontWeight: 'bold',
+                fontFamily: 'Poppins-Bold',
               }}>
               {props.title}
             </Text>
@@ -136,6 +137,7 @@ const ButtonIndicator = props => {
 const styles = StyleSheet.create({
   text: {
     color: color.g800,
+    fontFamily: 'Poppins-Bold',
   },
   btnIndicator: {
     ...style.shadow,
@@ -147,6 +149,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: 'Poppins-Bold',
   },
 });
 

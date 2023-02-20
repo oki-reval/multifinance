@@ -1,3 +1,4 @@
+import axios from 'axios';
 const _odoo_utils = {
   odoo_authenticate: async function (url, database, login, password) {
     headers = new Headers({
@@ -104,6 +105,25 @@ const _odoo_utils = {
           if (r.errors) throw r.errors;
           return r.data;
         });
+
+      // return axios
+      //   .post(
+      //     url,
+      //     {withCredentials: 'include'},
+      //     {
+      //       headers: {
+      //         'Content-Type': 'application/graphql',
+      //       },
+      //     },
+      //     {
+      //       body: JSON.stringify(body),
+      //     },
+      //   )
+      //   .then(r => {
+      //     if (r.errors) throw r.errors;
+      //     return r.data;
+      //   })
+      //   .catch(err => console.log(err));
     }
     return graphql;
   },

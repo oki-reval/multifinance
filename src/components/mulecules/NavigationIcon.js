@@ -11,7 +11,7 @@ const NavigationIcon = props => {
 
   return (
     <View>
-      <Icon name={generateIcon()} size={34} color={color.s300} />
+      <Icon name={generateIcon()} size={34} color={color.s500} />
     </View>
   );
 };

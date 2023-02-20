@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {StatusBar, View, BackHandler} from 'react-native';
+import React, {useState} from 'react';
+import {StatusBar, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Loading} from '../../components/atoms';
 import {Login, Register} from '../../components/organisms';
@@ -11,24 +11,6 @@ const LogReg = () => {
   const dispatch = useDispatch();
   const [activePage, setActivePage] = useState('login');
   const [loading, setLoading] = useState(false);
-  function handleBackButtonClick() {
-    if (activePage == 'login') {
-      setActivePage('register');
-    } else {
-      setActivePage('login');
-    }
-    return true;
-  }
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
-    return () => {
-      BackHandler.removeEventListener(
-        'hardwareBackPress',
-        handleBackButtonClick,
-      );
-    };
-  }, []);
 
   const onLogin = async data => {
     setLoading(true);

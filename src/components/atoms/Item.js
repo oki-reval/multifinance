@@ -36,8 +36,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 5,
     borderRadius: 6,
-    // flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   textLoan: {
     marginHorizontal: 10,
@@ -47,6 +45,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Poppins-Medium',
+    color: color.g600,
   },
 });
 export default Item;

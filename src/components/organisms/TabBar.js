@@ -41,7 +41,7 @@ const TabBar = ({state, descriptors, navigation}) => {
                 <Pressable
                   onPress={onPress}
                   style={{
-                    backgroundColor: isFocused ? color.p300 : color.p700,
+                    backgroundColor: isFocused ? color.p600 : color.p800,
                     borderRadius: 20,
                   }}>
                   <View style={styles.icon}>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     position: 'absolute',
     bottom: 15,
-    backgroundColor: color.p700,
+    backgroundColor: color.p800,
     borderRadius: 25,
     marginHorizontal: width * 0.04,
   },
