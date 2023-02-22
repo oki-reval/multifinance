@@ -65,6 +65,7 @@ const PaymentContainer = props => {
       <ModalConfirmation
         visible={props.showMessage}
         onClose={() => props.onClose()}
+        onBack={() => props.onBack()}
       />
       <Button
         title={'Konfirmasi Pembayaran'}

@@ -19,7 +19,7 @@ const ModalConfirmation = props => {
             <Text style={styles.modalText}>
               Pembayaran Berhasil dilakukan {props.message}
             </Text>
-            <Button title={'Kembali'} />
+            <Button title={'Kembali'} onPress={() => props.onBack()} />
           </View>
         </View>
         <View style={styles.transparent}></View>

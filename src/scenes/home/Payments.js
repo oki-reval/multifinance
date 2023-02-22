@@ -44,6 +44,7 @@ const Payments = props => {
       paymentConfirmation={onConfirmPayment}
       showMessage={showMessage}
       onClose={() => setShowMessage(false)}
+      onBack={() => props.navigation.goBack()}
     />
   );
 };
