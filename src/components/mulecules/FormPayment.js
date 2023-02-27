@@ -33,7 +33,7 @@ const FormPayment = props => {
         </View>
         <View style={[style.shadow, {marginVertical: 10}]}>
           {props?.image && (
-            <>
+            <View>
               <Icon
                 name="close-circle"
                 size={24}
@@ -47,7 +47,7 @@ const FormPayment = props => {
                   width: width / 2.5,
                 }}
               />
-            </>
+            </View>
           )}
         </View>
       </View>

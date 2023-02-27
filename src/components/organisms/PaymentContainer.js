@@ -5,7 +5,7 @@ import {Button} from '../atoms';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const PaymentContainer = props => {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
 
   const openCamera = () => {
     let options = {
