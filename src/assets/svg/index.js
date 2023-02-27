@@ -1,8 +1,8 @@
-import Approved from './Approved';
-import Auth from './Auth';
-import Connection from './Connection';
-import Promotion from './Promotion';
-import Welcome from './Welcome';
-import Investor from './Investor';
+import Approved from './Approved.svg';
+import Auth from './Auth.svg';
+import Connection from './Connection.svg';
+import Promotion from './Promotion.svg';
+import Welcome from './Welcome.svg';
+import Investor from './Investor.svg';
 
 export {Approved, Auth, Connection, Promotion, Welcome, Investor};
