@@ -14,7 +14,7 @@ const LogReg = () => {
 
   const onLogin = async data => {
     setLoading(true);
-    await odoo_builder('http://47.241.10.35:88', 'demo')
+    await odoo_builder('http://47.241.10.35:88', 'LoanDemo-3.1')
       .login(data.email, data.password)
       .then(res => {
         dispatch(setUser(res));

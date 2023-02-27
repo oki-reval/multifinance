@@ -48,7 +48,7 @@ const Dashboard = props => {
   }, []);
 
   const generateData = async () => {
-    await odoo_builder('http://47.241.10.35:88', 'demo')
+    await odoo_builder('http://47.241.10.35:88', 'LoanDemo-3.1')
       .graphql(getLoanAccount)
       .then(res => setData(res.LoanAccount))
       .catch(err => {
@@ -60,7 +60,7 @@ const Dashboard = props => {
   const getDetails = async val => {
     setvisible(true);
     setLoading(true);
-    await odoo_builder('http://47.241.10.35:88', 'demo')
+    await odoo_builder('http://47.241.10.35:88', 'LoanDemo-3.1')
       .graphql(getDetailLoanAccount, variableDetail(val.name))
       .then(res => {
         setDetailData(res);
