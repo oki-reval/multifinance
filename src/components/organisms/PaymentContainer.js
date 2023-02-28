@@ -61,6 +61,7 @@ const PaymentContainer = props => {
         onDelete={() => {
           setImage(null);
         }}
+        onChangeText={val => props.onChangeText(val)}
       />
       <ModalConfirmation
         visible={props.showMessage}
@@ -69,7 +70,7 @@ const PaymentContainer = props => {
       />
       <Button
         title={'Konfirmasi Pembayaran'}
-        onPress={props.paymentConfirmation}
+        onPress={() => props.paymentConfirmation(image)}
       />
     </ScrollView>
   );

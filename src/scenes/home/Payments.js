@@ -10,6 +10,7 @@ const Payments = props => {
   const [showMessage, setShowMessage] = useState(false);
   const coordinate = props.route.params?.location?.coords;
   const [address, setAddress] = useState([]);
+  const [amount, setAmount] = useState(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -34,17 +35,24 @@ const Payments = props => {
       .catch(error => console.warn(error));
   }, [props.route.params.location]);
 
-  const onConfirmPayment = () => {
-    setShowMessage(true);
+  const onConfirmPayment = val => {
+    if (amount == null && amount < 10) {
+      alert('Tolong Masukan Nominal pembayaran yang sesuai');
+    } else if (!val) {
+      alert('Bukti Pembayaran Harus dikirim');
+    } else {
+      setShowMessage(true);
+    }
   };
 
   return (
     <PaymentContainer
       location={address.toString()}
-      paymentConfirmation={onConfirmPayment}
+      paymentConfirmation={val => onConfirmPayment(val)}
       showMessage={showMessage}
       onClose={() => setShowMessage(false)}
       onBack={() => props.navigation.goBack()}
+      onChangeText={val => setAmount(val)}
     />
   );
 };
