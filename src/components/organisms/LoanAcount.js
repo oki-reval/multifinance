@@ -9,7 +9,7 @@ const LoanAcount = props => {
       <Text style={style.h1}>Loan Account List</Text>
       <List
         data={props.data}
-        loadData={props.loadData}
+        loadData={props.refreshData}
         onPress={val => props.onPress(val)}
       />
       <ModalDetailAccount

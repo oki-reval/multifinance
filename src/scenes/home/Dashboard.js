@@ -97,7 +97,7 @@ const Dashboard = props => {
       <LoanAcount
         data={data}
         detailData={detailData}
-        loadData={generateData}
+        refreshData={generateData}
         loading={loading}
         onPress={val => getDetails(val)}
         visible={visible}
@@ -106,6 +106,7 @@ const Dashboard = props => {
           setvisible(false);
         }}
         onPay={generateLocation}
+        loadData={loadings}
       />
       {loading && <Loading />}
     </SafeAreaView>
