@@ -13,7 +13,8 @@ import {setLoan} from '../../states/actions/initApps';
 import Geolocation from '@react-native-community/geolocation';
 import {useFocusEffect} from '@react-navigation/native';
 import {style} from '../../styles';
-import {Loading} from '../../components/atoms';
+import {Button, Loading} from '../../components/atoms';
+import RNRestart from 'react-native-restart';
 
 const Dashboard = props => {
   const dispatch = useDispatch();
@@ -106,6 +107,10 @@ const Dashboard = props => {
         }}
         onPay={generateLocation}
         loadData={loadings}
+      />
+      <Button
+        title={'sample how to restart app'}
+        onPress={() => RNRestart.restart()}
       />
       {loading && <Loading />}
     </SafeAreaView>

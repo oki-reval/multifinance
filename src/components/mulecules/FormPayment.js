@@ -20,7 +20,7 @@ const FormPayment = props => {
         <View style={styles.address}>
           <Input
             placeholder={'Masukan Nominal Pembayaran'}
-            onChangeText={val => console.log(val)}
+            onChangeText={val => props.onChangeText(val)}
           />
         </View>
       </View>

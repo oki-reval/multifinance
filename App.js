@@ -15,23 +15,23 @@ let CodePushOptions = {
     appendReleaseDescription: true,
     title: 'a new update is available!',
   },
-  // onDownloadProgress: progress => {
-  //   setDownloadProgress(progress.receivedBytes / progress.totalBytes);
+  onDownloadProgress: progress => {
+    setDownloadProgress(progress.receivedBytes / progress.totalBytes);
 
-  //   if (progress.receivedBytes === progress.totalBytes) {
-  //     // Tampilkan notifikasi ketika pengunduhan selesai
-  //     Alert.alert(
-  //       'Update berhasil diunduh',
-  //       'Aplikasi akan memperbarui dirinya saat dibuka kembali',
-  //     );
-  //   }
-  // },
+    if (progress.receivedBytes === progress.totalBytes) {
+      // Tampilkan notifikasi ketika pengunduhan selesai
+      Alert.alert(
+        'Update berhasil diunduh',
+        'Aplikasi akan memperbarui dirinya saat dibuka kembali',
+      );
+    }
+  },
 };
-// if (CodePushOptions.checkFrequency == 1) {
-//   // Alert.alert(CodePushOptions.onDownloadProgress.length);
-//   console.log(CodePushOptions.onDownloadProgress.length);
-// }
-// console.log(CodePushOptions);
+if (CodePushOptions.checkFrequency == 1) {
+  Alert.alert('test');
+  console.log('test', CodePushOptions.onDownloadProgress.length);
+}
+console.log('oke', CodePush.CheckFrequency);
 
 const App = () => {
   Text.defaultProps = Text.defaultProps || {};
