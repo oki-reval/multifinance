@@ -13,8 +13,7 @@ import {setLoan} from '../../states/actions/initApps';
 import Geolocation from '@react-native-community/geolocation';
 import {useFocusEffect} from '@react-navigation/native';
 import {style} from '../../styles';
-import {Button, Loading} from '../../components/atoms';
-import RNRestart from 'react-native-restart';
+import {Loading} from '../../components/atoms';
 
 const Dashboard = props => {
   const dispatch = useDispatch();
@@ -32,7 +31,7 @@ const Dashboard = props => {
       };
     }, []),
   );
-  console.log(visible);
+
   function handleBackButtonClick() {
     setvisible(false);
     return true;
@@ -98,6 +97,7 @@ const Dashboard = props => {
       <LoanAcount
         data={data}
         detailData={detailData}
+        loadData={generateData}
         loading={loading}
         onPress={val => getDetails(val)}
         visible={visible}
@@ -106,11 +106,6 @@ const Dashboard = props => {
           setvisible(false);
         }}
         onPay={generateLocation}
-        loadData={loadings}
-      />
-      <Button
-        title={'sample how to restart app'}
-        onPress={() => RNRestart.restart()}
       />
       {loading && <Loading />}
     </SafeAreaView>

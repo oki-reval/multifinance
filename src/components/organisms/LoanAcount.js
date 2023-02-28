@@ -7,7 +7,11 @@ const LoanAcount = props => {
   return (
     <View style={styles.listContainer}>
       <Text style={style.h1}>Loan Account List</Text>
-      <List data={props.data} onPress={val => props.onPress(val)} />
+      <List
+        data={props.data}
+        loadData={props.loadData}
+        onPress={val => props.onPress(val)}
+      />
       <ModalDetailAccount
         visible={props.visible}
         onClose={() => props.onClose()}
