@@ -3,9 +3,10 @@ import {Provider} from 'react-redux';
 import AppNavigator from './src/navigations/AppNavigator';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistor, store} from './src/states/store';
-import {Text} from 'react-native';
+import {Alert, Text} from 'react-native';
 import {color} from './src/styles';
 import CodePush from 'react-native-code-push';
+import {Loading} from './src/components/atoms';
 
 let CodePushOptions = {
   checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME,
@@ -14,7 +15,23 @@ let CodePushOptions = {
     appendReleaseDescription: true,
     title: 'a new update is available!',
   },
+  onDownloadProgress: progress => {
+    setDownloadProgress(progress.receivedBytes / progress.totalBytes);
+
+    if (progress.receivedBytes === progress.totalBytes) {
+      // Tampilkan notifikasi ketika pengunduhan selesai
+      Alert.alert(
+        'Update berhasil diunduh',
+        'Aplikasi akan memperbarui dirinya saat dibuka kembali',
+      );
+    }
+  },
 };
+if (CodePushOptions.checkFrequency == 1) {
+  // Alert.alert(CodePushOptions.onDownloadProgress.length);
+  console.log(CodePushOptions.onDownloadProgress.length);
+}
+console.log(CodePushOptions);
 
 const App = () => {
   Text.defaultProps = Text.defaultProps || {};
