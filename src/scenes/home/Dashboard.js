@@ -14,6 +14,7 @@ import Geolocation from '@react-native-community/geolocation';
 import {useFocusEffect} from '@react-navigation/native';
 import {style} from '../../styles';
 import {Loading} from '../../components/atoms';
+import {Input} from '@rneui/base';
 
 const Dashboard = props => {
   const dispatch = useDispatch();

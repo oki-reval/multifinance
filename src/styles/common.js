@@ -55,4 +55,16 @@ export const style = StyleSheet.create({
     margin: 10,
     fontFamily: 'Poppins-Light',
   },
+  title: {
+    textAlign: 'center',
+    fontSize: 16,
+    margin: 10,
+    fontFamily: 'Poppins-Regular',
+  },
+  subtitle: {
+    textAlign: 'center',
+    fontSize: 20,
+    margin: 10,
+    fontFamily: 'Poppins-Light',
+  },
 });

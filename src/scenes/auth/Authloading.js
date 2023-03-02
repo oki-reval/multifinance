@@ -1,10 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Divider} from '@rneui/base';
 import React, {useEffect} from 'react';
-import {StyleSheet, Dimensions, View, StatusBar, Image} from 'react-native';
+import {StatusBar, Dimensions, View, Text, FlatList, Image} from 'react-native';
 import {BallIndicator} from 'react-native-indicators';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch} from 'react-redux';
-import {Welcome} from '../../assets/svg';
+import {Promotion, Welcome} from '../../assets/svg';
+import {Background, ButtonIndicator} from '../../components/atoms';
+import {OpeningIndicator} from '../../components/mulecules';
 import {setAuthloading, setUser} from '../../states/actions/initApps';
 import {style} from '../../styles';
 import {color} from '../../styles/colors';
@@ -16,7 +19,7 @@ const AuthLoading = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    generateConfiguration();
+    // generateConfiguration();
   });
 
   const generateConfiguration = () => {
@@ -33,33 +36,11 @@ const AuthLoading = props => {
   };
 
   return (
-    <LinearGradient
-      start={{x: 0.1, y: 0.14}}
-      end={{x: 0.1, y: 2}}
-      locations={[0, 0.5, 0.1]}
-      colors={[color.s700, color.p600, color.pt60]}
-      style={styles.container}>
+    <View>
       <StatusBar style="light" backgroundColor={'transparent'} translucent />
-      <Welcome height={height / 3} />
-      <View style={[style.flexRow, style.footer]}>
-        <Image
-          source={require('../../assets/images/Logo.png')}
-          resizeMode="contain"
-          style={{height: height / 15, width: width / 2}}
-        />
-        <BallIndicator color={color.s400} size={20} />
-      </View>
-    </LinearGradient>
+      <OpeningIndicator />
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default AuthLoading;
