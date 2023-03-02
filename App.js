@@ -1,90 +1,106 @@
-import React, {useState, useEffect} from 'react';
-import * as Progress from 'react-native-progress';
+import React, {useEffect, useState} from 'react';
 import {Provider} from 'react-redux';
+import {
+  ActivityIndicator,
+  Modal,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import AppNavigator from './src/navigations/AppNavigator';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistor, store} from './src/states/store';
-import {ActivityIndicator, Alert, Text, View} from 'react-native';
 import {color} from './src/styles';
 import CodePush from 'react-native-code-push';
-import {Loading} from './src/components/atoms';
 
 const App = () => {
-  const [progressBar, setProgress] = useState(0);
-  const [showPopup, setShowPopup] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const syncCodePush = async () => {
+    try {
+      await CodePush.sync(
+        {
+          updateDialog: {
+            appendReleaseDescription: true,
+            title: 'a new update is available!',
+          },
+          installMode: CodePush.InstallMode.IMMEDIATE,
+        },
+        status => {
+          if (status === CodePush.SyncStatus.DOWNLOADING_PACKAGE) {
+            showModal();
+          } else {
+            hideModal();
+          }
+        },
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    const downloadCodePush = async () => {
-      try {
-        const update = await CodePush.checkForUpdate();
-        console.log('update', update);
-        console.log('CodePush', CodePush);
-        if (!update) {
-          console.log('The app is up to date.');
-        } else {
-          setShowPopup(true);
-          const syncStatus = CodePush.sync(
-            {updateDialog: true, installMode: CodePush.InstallMode.IMMEDIATE},
-            status => {
-              console.log(`CodePush sync status: ${JSON.stringify(status)}`);
-              if (status === CodePush.SyncStatus.DOWNLOADING_PACKAGE) {
-                console.log(
-                  `Download progress: ${syncStatus.downloadProgress}`,
-                );
-                setProgress(Math.floor(syncStatus.downloadProgress * 100));
-              }
-            },
-          );
-          await CodePush.sync(
-            {
-              checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME,
-              mandatoryInstallMode: CodePush.InstallMode.IMMEDIATE,
-              updateDialog: {
-                appendReleaseDescription: true,
-                title: 'A new update is available!',
-              },
-              installMode: CodePush.InstallMode.IMMEDIATE,
-            },
-            syncStatus,
-          );
-        }
-      } catch (err) {
-        console.log(`An error occurred while checking for updates - ${err}`);
-      } finally {
-        setShowPopup(false);
-      }
-    };
-
-    downloadCodePush();
+    syncCodePush();
   }, []);
+
+  const showModal = () => {
+    setModalVisible(true);
+  };
+
+  const hideModal = () => {
+    setModalVisible(false);
+  };
+
+  Text.defaultProps = Text.defaultProps || {};
+  Text.defaultProps.style = {
+    fontSize: 14,
+    fontFamily: 'Poppins-Regular',
+    color: color.p800,
+  };
 
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <View style={{flex: 1}}>
+          <TouchableOpacity onPress={showModal}>
+            <Text>Show Modal</Text>
+          </TouchableOpacity>
+          <Modal visible={modalVisible} animationType="slide" transparent>
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: 'rgba(0,0,0,0.5)',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <View
+                style={{
+                  backgroundColor: '#FFF',
+                  width: '70%',
+                  padding: 20,
+                  borderRadius: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <ActivityIndicator size="large" />
+                <Text style={{marginTop: 10}}>Loading...</Text>
+              </View>
+            </View>
+          </Modal>
           <AppNavigator />
-          {showPopup && (
+          {isLoading && (
             <View
               style={{
                 position: 'absolute',
                 top: 0,
-                left: 0,
                 bottom: 0,
+                left: 0,
                 right: 0,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
               }}>
-              <View
-                style={{
-                  backgroundColor: '#fff',
-                  padding: 20,
-                  borderRadius: 10,
-                  alignItems: 'center',
-                }}>
-                <Text>Downloading update: {progressBar}%</Text>
-                <Progress.Circle progress={progressBar / 100} size={50} />
-              </View>
+              <ActivityIndicator size="large" />
             </View>
           )}
         </View>
